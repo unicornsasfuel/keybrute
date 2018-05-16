@@ -72,6 +72,8 @@ def derive_md5(password, keylen):
 
 for word in wordlist:
    word = word.rstrip()
+   if len(word) == 0:
+      continue
    if args.nullpad:
       out_fh.write( hexlify( derive_null_pad(word, args.keylen) ) + '\n')
    if args.repeat:

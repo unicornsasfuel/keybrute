@@ -86,9 +86,9 @@ def aes_key_brute(samples, keys):
    one_block_samples = filter(lambda x: len(x)==16, samples)
    multi_block_samples = filter(lambda x: len(x) > 16, samples)
    
-   if len(multi_block_samples) == 1:
+   if len(multi_block_samples) == 1 and args.crib == None:
       print('[*] Only a single multi-block sample exists. This has a 1 in 256 chance of false positives with the CBC test.')
-   if len(one_block_samples) == 1:
+   if len(one_block_samples) == 1 and args.crib == None:
       print('[*] Only a single one-block sample exists. This has a 1 in 256 chance of false positives with the ECB, CBC key-as-IV, and CBC known IV tests.')
    
    for key in keys:
