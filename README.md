@@ -4,7 +4,7 @@ This is a tool for cracking AES keys using captured encrypted data, adapted from
 
 You'll need to capture at least one encrypted message. If possible, capture multiple unique encrypted messages produced with the same key. Place them, newline-separated and hex- or base64-encoded, into a single file.
 
-Next, you'll need a list of keys to try. You can generate one by taking your favorite password cracking wordlist (rockyou, anyone?) and running it through `convert_wordlist.py` like so:
+Next, you'll need a list of keys to try. A keylist based off of the password list included with John the Ripper and repeating bytes is included. You can generate your own by taking your favorite password cracking wordlist (rockyou, anyone?) and running it through `convert_wordlist.py` like so:
 
 `python ./convert_wordlist.py -nrm wordlist.txt keylist.txt`
 
