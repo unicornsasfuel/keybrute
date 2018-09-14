@@ -2,6 +2,8 @@
 
 This is a tool for cracking AES keys using captured encrypted data, adapted from the FeatherDuster AES cracking module to be a standalone tool.
 
+AESbrute expects Python 2.7. This is mostly a proof of concept tool that will be deprecated once a rewrite in a language that can properly parallelize tasks can be written for performance reasons.
+
 You'll need to capture at least one encrypted message. If possible, capture multiple unique encrypted messages produced with the same key. Place them, newline-separated and hex- or base64-encoded, into a single file.
 
 Next, you'll need a list of keys to try. A keylist based off of the password list included with John the Ripper and repeating bytes is included. You can generate your own by taking your favorite password cracking wordlist (rockyou, anyone?) and running it through `convert_wordlist.py` like so:
