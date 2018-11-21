@@ -7,6 +7,7 @@ import argparse
 from binascii import unhexlify
 from base64 import b64decode as b64d
 from string import rstrip
+import sys
 
 tool_desc = '''
 A wordlist-based AES key brute force utility capable of finding keys by trial decryption
@@ -51,7 +52,7 @@ keys_fh.close()
 
 
 # Perform the actual brute force
-def aes_key_brute(samples, keys):
+def aes_key_brute(samples):
    # Check that the samples are the correct size to match AES
    if not all([len(sample) % 16 == 0 for sample in samples]):
       return False
@@ -90,8 +91,13 @@ def aes_key_brute(samples, keys):
       print('[*] Only a single multi-block sample exists. This has a 1 in 256 chance of false positives with the CBC test.')
    if len(one_block_samples) == 1 and args.crib == None:
       print('[*] Only a single one-block sample exists. This has a 1 in 256 chance of false positives with the ECB, CBC key-as-IV, and CBC known IV tests.')
-   
+
+   num_keys = 0
    for key in keys:
+      if num_keys % 1000 == 0:
+         sys.stdout.write("\rNumber of keys tested: %d" % num_keys)
+         sys.stdout.flush()
+      num_keys += 1
       # set all bad_decryption flags to False
       ecb_bad_decrypt = cbc_key_as_iv_bad_decrypt = cbc_bad_decrypt = cbc_known_iv_bad_decrypt = False
 

@@ -1,5 +1,5 @@
-First things first, install PyCrypto. The easiest way is with pip:
+First things first, install PyCryptodome. The easiest way is with pip:
 
-`pip install pycrypto`
+`pip install pycryptodome`
 
 Now you should just be able to run the script. Yay!
